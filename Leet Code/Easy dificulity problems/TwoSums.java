@@ -134,33 +134,27 @@ public class TwoSums {
 
     public  ArrayList<Integer> GetIndicesArrayList(ArrayList<Integer> IndicesArray, LinkedHashMap<Integer, Integer> NumsDictionary, int [] copyOfnums,int target) {
 
-        int i = 0;
-
-        while( i <= target) {
+        for (int i = 0; i < copyOfnums.length; i++){
 
             int SecondNumber;
 
-            ArrayList<Integer> FirstNumberInfoList = BinarySearch(NumsDictionary,copyOfnums, copyOfnums.length, i);
-
-           if (boolOf(FirstNumberInfoList.get(0))){
+            int FirstNumberOriginalIndex = getOriginalIndex(NumsDictionary,copyOfnums[i]);
             
-                SecondNumber = target - i;
+            SecondNumber = target - copyOfnums[i];
 
-                int[] slicedArray = Arrays.copyOfRange(copyOfnums, FirstNumberInfoList.get(1), copyOfnums.length);
+            int[] slicedArray = Arrays.copyOfRange(copyOfnums, i+1, copyOfnums.length);
 
-                ArrayList<Integer> SecondNumberInfoList = BinarySearch(NumsDictionary,slicedArray, slicedArray.length, SecondNumber);
+            ArrayList<Integer> SecondNumberInfoList = BinarySearch(NumsDictionary,slicedArray, slicedArray.length, SecondNumber);
 
-                if (boolOf(SecondNumberInfoList.get(0))){
+            if (boolOf(SecondNumberInfoList.get(0))){
 
-                    IndicesArray.add(FirstNumberInfoList.get(2));
-                    IndicesArray.add(SecondNumberInfoList.get(2)); 
+                IndicesArray.add(FirstNumberOriginalIndex);
+                IndicesArray.add(SecondNumberInfoList.get(2)); 
 
-                    return IndicesArray;
+                return IndicesArray;
 
-                }
             }
-
-            i +=1;
+            
         }
 
         return IndicesArray;
@@ -220,7 +214,7 @@ public class TwoSums {
         TwoSums solution = new TwoSums();
 
         int[] nums = {0,4,3,0};
-        int target = 6;
+        int target = 0;
 
         // Call the twoSum method
         int[] result = solution.twoSum(nums, target);
