@@ -1,11 +1,10 @@
 import java.util.HashMap;
 import java.util.Map;
-import java.util.HashSet;
-import java.util.Set;
-import java.util.Arrays;
+import java.util.ArrayList;
 import java.util.LinkedHashMap;
+import java.util.List;
 
-class Solution {
+class SortArrayIncreasingFrequency {
     public int[] frequencySort(int[] nums) {
 
         Map<Integer, Integer> FrequencyNumberMap = new HashMap<>();
